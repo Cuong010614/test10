@@ -1,6 +1,6 @@
 # Một thế giới nhỏ dành cho Mỹ Tú
 
-Trang quà tặng 20/10, dùng HTML, CSS, JavaScript và Vite.
+Trang quà tặng 20/10, dùng HTML, CSS, JavaScript, Three.js và Vite.
 
 ## Chạy và build
 
@@ -27,7 +27,7 @@ Sau khi sửa nội dung, chạy `npm run build:pages` và commit cả mã ngu�
 1. Trang giới thiệu Cô Hai Báo, phong cách fan club mukbang. Có liên kết tới TikTok do người gửi cung cấp; không mạo nhận là trang chính thức.
 2. Nút “Thả tim cho Cô Hai” chuyển thẳng sang trang quà bằng hiệu ứng ngắn, không lời thoại, âm báo, màn gọi tên hoặc nút xác nhận trung gian. Tim chỉ là tương tác tại trang, không gửi lượt thích lên TikTok. Tiêu đề và mô tả ban đầu không tiết lộ quà.
 3. Thế giới quà tặng: hoa ly SVG, thư, lời nhắn, khung ảnh, minh họa Miffy/Bibble/Snoopy và góc nhạc.
-4. Nút cuối bung 52 bông hoa ly, rồi hiện hộp bánh. Mở nắp mới hiện chỉ dẫn nhận tại quầy bảo vệ cổng 2, ngày 20/10.
+4. Nút cuối bung 64–100 bông hoa ly, rồi hiện hộp bánh. Mở nắp mới hiện chỉ dẫn nhận tại quầy bảo vệ cổng 2, ngày 20/10.
 5. Có nút sao chép chỉ dẫn và xem lại hoa nở. Chế độ giảm chuyển động bỏ hiệu ứng nhưng giữ toàn bộ nội dung.
 
 ## Cá nhân hóa
@@ -40,8 +40,18 @@ Sau khi sửa nội dung, chạy `npm run build:pages` và commit cả mã ngu�
 
 Nhạc nền nhẹ dùng Web Audio và chỉ bật khi bấm nút. Nhạc của MCK/Wren Evans/Mr. Siro mở qua tìm kiếm Spotify ở tab riêng; chưa có file nhạc hoặc trình phát bài hát nhúng. Không tự phát hoặc khẳng định đang phát bản thu của các nghệ sĩ.
 
-Ảnh được thêm trong giao diện chỉ tồn tại trong phiên mở trang, không tải lên máy chủ. Muốn gửi kèm ảnh thật, đặt ảnh trong `public/` rồi thay nội dung các khung bằng thẻ `img` trước khi build. Google Fonts có font dự phòng khi không tải được.
+Ảnh được thêm trong giao diện chỉ tồn tại trong phiên mở trang, không tải lên máy chủ. Muốn gửi kèm ảnh thật, đặt ảnh trong `public/` rồi thay nội dung các khung bằng thẻ `img` trước khi build. Font Playfair Display và Be Vietnam Pro được đóng gói cùng website, không cần kết nối Google Fonts.
 
 ## Kiểm tra thủ công
 
 Kiểm tra màn hình 1440px, 390px và 320px: trang bìa che nội dung quà, chuyển thẳng sau một lần thả tim, mở/đóng thư bằng nút và Escape, chọn hoa, chọn nhân vật, bật/tắt nhạc nền, liên kết Spotify, thêm ảnh, hoa bung, mở hộp và sao chép chỉ dẫn. Thử lại với `prefers-reduced-motion: reduce`. Không có backend hoặc thông báo tự động gửi cho người nhận.
+
+## Bản trải nghiệm 3D
+
+- Hoa ly dựng bằng hình học 3D: cánh hoa cong, nhụy, lá, cành, giấy gói và nơ. Mô-đun Three.js chỉ tải sau khi thả tim. Nếu WebGL không hoạt động hoặc mất context, bó hoa SVG vẫn hiện.
+- Bó hoa theo chuyển động chuột, có nút xoay và trở về góc ban đầu; tự dừng khi nằm ngoài màn hình hoặc tab bị ẩn. Giới hạn render 30 fps, mật độ pixel tối đa 1.35 trên mobile và 1.7 trên desktop.
+- Hạt sáng, dấu chuột, nghiêng khung ảnh, xuất hiện theo cuộn, đĩa nhạc quay, vòng sáng cuối và chuyển cảnh không lời.
+- Nút “Hiệu ứng” tắt các chuyển động. Tôn trọng `prefers-reduced-motion`; toàn bộ thư, ảnh, nhạc và chỉ dẫn vẫn sử dụng được khi tắt hiệu ứng.
+- `src/bouquet-3d.js`: cảnh Three.js. `src/experience.js`: quản lý chuyển động, vùng nhìn và tương tác. `src/cinematic.css`: thiết kế mới. `src/fonts.js`: font nội bộ.
+
+Tham khảo kỹ thuật (không sao chép thiết kế): [Three.js Responsive Design](https://github.com/mrdoob/three.js/blob/r180/manual/en/responsive.html), [MDN Intersection Observer](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API).

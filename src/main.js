@@ -1,3 +1,5 @@
+import './fonts.js';
+import { startExperience, motionAllowed } from './experience.js';
 import { lily as flower, friends } from './illustrations.js';
 import { giftConfig } from './gift-config.js';
 const stem = (x,y,endX,endY) => `<path d="M${endX} ${endY} Q${x-30} ${y+85} ${x} ${y}" fill="none" stroke="#7b8c66" stroke-width="3"/><path d="M${(x+endX)/2} ${(y+endY)/2}q-42 -4 -39 -34q34 -4 39 34" fill="#859475"/><path d="M${(x+endX)/2+2} ${(y+endY)/2+23}q35 -2 38 -32q-33 -2 -38 32" fill="#a0ac87"/>`;
@@ -21,7 +23,7 @@ const musicButton=document.querySelector('#musicToggle');musicButton.addEventLis
 // A single heart click reveals the gift without an intermediate screen.
 const cover=document.querySelector('#coverPage');
 const world=document.querySelector('#giftWorld');
-const reduceMotion=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
+const reduceMotion=()=>!motionAllowed();
 document.querySelector('#secretEntry').addEventListener('click',()=>{
  cover.hidden=true;
  world.hidden=false;
@@ -31,6 +33,7 @@ document.querySelector('#secretEntry').addEventListener('click',()=>{
  const heading=document.querySelector('#heroTitle');
  heading.tabIndex=-1;
  heading.focus({preventScroll:true});
+ startExperience();
 });
 const friendMessages={miffy:'Miffy gửi Mỹ Tú một chiếc ôm. Hôm nay, cho phép mình được chiều chuộng một chút nhé.',bibble:'Bibble xin thông báo: Mỹ Tú đáng yêu quá mức cho phép! Phần thưởng là được yêu thương thêm thật nhiều.',snoopy:'Snoopy đã dành cho em một chỗ dưới bầu trời. Hít thở một chút, nghe nhạc một chút. Hôm nay cứ thong thả thôi.'};
 Object.entries(friends).forEach(([name,art])=>document.querySelector(`#${name}Art`).innerHTML=art);
@@ -48,19 +51,21 @@ document.querySelectorAll('[data-artist]').forEach(button=>button.addEventListen
  document.querySelector('#trackSuggestion').textContent=track?`Gợi ý cho em: ${track}`:'Một góc nhạc dành cho những lúc muốn lắng lại.';
  const link=document.querySelector('#artistLink');link.href=`https://open.spotify.com/search/${encodeURIComponent(track?`${track} ${artist}`:artist)}`;link.textContent=track?'Tìm bài hát trên Spotify →':`Tìm ${artist} trên Spotify →`;
 }));
-// Finite animation: no persistent canvas loop, and a reduced-motion alternative.
+// Finite burst with bounded particles and a reduced-motion alternative.
+let bloomCleanup;
 function bloomStorm(){
  if(reduceMotion())return;
- const container=document.querySelector('#confetti');container.replaceChildren();
+ clearTimeout(bloomCleanup);
+ const container=document.querySelector('#confetti');container.replaceChildren();container.classList.add('bloom-finale');
  const colors=['#f6d7e0','#fff4df','#e9b4c8','#e4cfea'];
- for(let i=0;i<52;i++){
+ for(let i=0;i<(innerWidth<760?64:100);i++){
   const el=document.createElement('span');el.className='lily-particle';
   el.innerHTML=`<svg viewBox="0 0 120 120">${flower(60,60,.9,colors[i%colors.length],i*31)}</svg>`;
   el.style.setProperty('--x',`${(Math.random()-.5)*220}vw`);el.style.setProperty('--y',`${(Math.random()-.6)*180}vh`);
   el.style.setProperty('--spin',`${Math.random()*600-300}deg`);el.style.setProperty('--size',`${34+Math.random()*70}px`);
   el.style.animationDelay=`${Math.random()*.65}s`;container.append(el);
  }
- setTimeout(()=>container.replaceChildren(),4300);
+ bloomCleanup=setTimeout(()=>{container.replaceChildren();container.classList.remove('bloom-finale');},4300);
 }
 let revealing=false;
 document.querySelector('#surpriseButton').addEventListener('click',()=>{

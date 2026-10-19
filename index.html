@@ -3,13 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#fbf7f2" />
+  <meta name="theme-color" content="#1c1423" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%232e382d'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-size='31' fill='%23e6e9b8'%3EC%3C/text%3E%3C/svg%3E" />
   <meta name="description" content="Góc yêu mến Cô Hai Báo: những video mukbang, phong cách hài hước và niềm vui mỗi ngày." />
   <title>Cô Hai Báo · Mukbang & những niềm vui nhỏ</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/src/style.css" />
+  <link rel="stylesheet" href="/src/cinematic.css" />
 </head>
 <body class="gate-active">
   <section id="coverPage" class="cover-page" aria-labelledby="coverTitle">
@@ -23,27 +22,29 @@
     <footer class="cover-footer"><span>GÓC YÊU MẾN DO NGƯỜI HÂM MỘ TẠO · KHÔNG PHẢI TRANG CHÍNH THỨC</span><a href="https://www.tiktok.com/@ngc.linhcohaibao" target="_blank" rel="noopener noreferrer">Theo dõi Cô Hai trên TikTok →</a></footer>
   </section>
   <div id="giftWorld" hidden>
+  <canvas id="ambientCanvas" aria-hidden="true"></canvas><div id="readingProgress" aria-hidden="true"></div>
   <header class="site-header">
     <a class="brand" href="#" aria-label="Về đầu trang"><span class="brand-flower">✧</span> một chút thương<span class="brand-dot">.</span></a>
     <nav aria-label="Điều hướng chính"><a href="#letter">Lời anh muốn nói</a><a href="#garden">Vườn yêu thương</a><a href="#memories">Chuyện chúng mình</a></nav>
-    <button class="sound-button" id="musicToggle" aria-pressed="false"><span aria-hidden="true">♫</span><span class="sound-label">Nhạc nền nhẹ</span></button>
+    <div class="header-controls"><button id="motionToggle" class="motion-button" aria-pressed="true">✦ Hiệu ứng: bật</button><button class="sound-button" id="musicToggle" aria-label="Bật hoặc tắt nhạc nền" aria-pressed="false"><span aria-hidden="true">♫</span><span class="sound-label">Nhạc nền nhẹ</span></button></div>
   </header>
   <main>
     <section class="hero" aria-labelledby="heroTitle">
       <div class="hero-copy">
-        <div class="eyebrow"><span class="tiny-line"></span> 20 THÁNG 10 · MỘT NGÀY THẬT ĐẶC BIỆT</div>
-        <h1 id="heroTitle">Mỹ Tú ơi,<br>em là điều <em>dịu dàng.</em><span class="title-spark" aria-hidden="true">✧</span></h1>
-        <p>Bất ngờ chưa, cô gái của anh?<br>Trái tim em vừa thả đã dẫn em tới một người<br>đang muốn thương em theo cách thật đặc biệt.</p>
-        <a class="button button-dark" href="#letter">Mở món quà của em <span aria-hidden="true">→</span></a>
-        <div class="hero-note"><span aria-hidden="true">♡</span> Làm bằng một chút code & rất nhiều yêu thương</div>
+        <div class="eyebrow"><span class="tiny-line"></span> 20.10 / MỘT VŨ TRỤ NHỎ DÀNH RIÊNG CHO EM</div>
+        <span class="hero-edition">THE MỸ TÚ EDITION</span>
+        <h1 id="heroTitle">Mỹ Tú.<br><em>Thế giới của em.</em></h1>
+        <p>Hoa em thích. Nhạc em nghe.<br>Và một điều ngọt ngào đang chờ ở cuối.</p>
+        <a class="button button-dark" href="#letter">Khám phá món quà <span aria-hidden="true">→</span></a>
+        <div class="hero-note"><span aria-hidden="true">✦</span> Một ngày đặc biệt. Một người đặc biệt.</div>
       </div>
-      <div class="hero-art">
+      <div class="hero-art"><div class="scene-aura" aria-hidden="true"></div><div class="scene-orbit orbit-a" aria-hidden="true"></div><div class="scene-orbit orbit-b" aria-hidden="true"></div><span class="scene-coordinate" aria-hidden="true">20°10′ N / MY FAVORITE PERSON</span><div id="bouquet3d" class="bouquet-3d" data-state="loading" role="img" aria-label="Bó hoa ly ba chiều dành cho Mỹ Tú"></div>
         <span class="art-spark spark-one" aria-hidden="true">✧</span><span class="art-spark spark-two" aria-hidden="true">✧</span>
         <div class="bouquet-card"><div class="card-topline"><span>FOR MY FAVORITE PERSON</span><span>♡</span></div><div id="bouquet" role="img" aria-label="Bó hoa ly hồng và trắng dành riêng cho Mỹ Tú"></div><div class="bouquet-caption">Hoa ly, cho người anh thương.</div><div class="bouquet-subtitle">anh nhớ cả những điều nhỏ em thích</div></div>
         <div class="date-stamp"><strong>20<span>/</span>10</strong><span>HAPPY WOMEN’S DAY</span></div>
-        <span class="handwritten art-note">cho em, bằng cả trái tim ♡</span>
+        <div class="scene-controls" id="sceneControls" hidden><button id="rotateBouquet" aria-label="Xoay bó hoa">↻ Xoay bó hoa</button><button id="resetBouquet" aria-label="Đưa bó hoa về góc ban đầu">↺</button></div><span class="scene-hint" id="sceneHint">Một bó hoa ly dành riêng cho em</span>
       </div>
-      <a class="scroll-hint" href="#letter"><span>CHẬM MỘT CHÚT, CẢM NHẬN NHIỀU HƠN</span> ↓</a>
+      <a class="scroll-hint" href="#letter"><span>SCROLL TO EXPLORE</span><span class="scroll-track" aria-hidden="true"></span><span>01 — 06</span></a>
     </section>
     <div class="love-ribbon" aria-hidden="true"><span>Em xứng đáng với những điều dịu dàng</span> ✧ <span>Hôm nay, ngày mai và mãi về sau</span> ✧ <span>Happy Vietnamese Women’s Day</span> ✧</div>
     <section class="letter-section section" id="letter">
@@ -58,7 +59,7 @@
     <section class="memories-section section" id="memories"><div class="memories-heading"><div><span class="eyebrow">03 / NHỮNG NGÀY CÓ NHAU</span><h2>Điều bình thường.<br><em>Kỷ niệm phi thường.</em></h2></div><p>Chẳng cần đi đâu thật xa.<br>Có em, ngày nào cũng đáng để nhớ.</p></div><div class="memory-grid"><article class="polaroid"><button class="memory-image" data-photo="0" aria-label="Thêm ảnh một ngày bên nhau"><span class="memory-placeholder"><span class="line-art">☼</span><span>Một ngày bên nhau</span><small>＋ Thêm ảnh của chúng mình</small></span></button><h3>Chỉ cần có em ở đây.</h3><span class="photo-date">OUR LITTLE MOMENTS · 01</span></article><article class="polaroid"><button class="memory-image" data-photo="1" aria-label="Thêm ảnh một chuyến đi"><span class="memory-placeholder"><span class="line-art">♧</span><span>Một nơi mình đã đến</span><small>＋ Thêm ảnh của chúng mình</small></span></button><h3>Đi đâu cũng được, cùng em.</h3><span class="photo-date">OUR LITTLE MOMENTS · 02</span></article><article class="polaroid"><button class="memory-image" data-photo="2" aria-label="Thêm ảnh nụ cười của em"><span class="memory-placeholder"><span class="line-art">♡</span><span>Một nụ cười anh nhớ</span><small>＋ Thêm ảnh của chúng mình</small></span></button><h3>Khoảnh khắc anh thích nhất.</h3><span class="photo-date">OUR LITTLE MOMENTS · 03</span></article></div><input type="file" id="photoInput" accept="image/jpeg,image/png,image/webp,image/gif" hidden><p class="photo-note">Ảnh chỉ hiển thị trên thiết bị này trong lần mở trang hiện tại.</p></section>
     <section class="club-section section" id="littleClub"><div class="center-heading"><span class="eyebrow">04 / HỘI NHỮNG CHIẾC ÔM</span><h2>Những người bạn nhỏ.<br><em>Cùng một người thương.</em></h2><p>Ba thành viên của hội “hôm nay Mỹ Tú phải thật vui”.</p></div><div class="friends-grid"><button class="friend-card" data-friend="miffy"><span class="friend-drawing" id="miffyArt"></span><span class="friend-label">THE SOFT ONE</span><h3>Miffy</h3><p>Một chiếc ôm thật nhẹ.</p><span class="friend-tap">Chạm để nhận lời nhắn ♡</span></button><button class="friend-card" data-friend="bibble"><span class="friend-drawing" id="bibbleArt"></span><span class="friend-label">THE CHAOTIC ONE</span><h3>Bibble</h3><p>Một chút đáng yêu hơi ồn ào.</p><span class="friend-tap">Chạm để nhận lời nhắn ♡</span></button><button class="friend-card" data-friend="snoopy"><span class="friend-drawing" id="snoopyArt"></span><span class="friend-label">THE CHILL ONE</span><h3>Snoopy</h3><p>Một ngày thảnh thơi bên em.</p><span class="friend-tap">Chạm để nhận lời nhắn ♡</span></button></div><p class="friend-message" id="friendMessage" role="status">Một chiếc ôm đang đợi được mở…</p></section>
     <section class="listening-section section" id="musicRoom"><div><span class="eyebrow">05 / TẦN SỐ CỦA EM</span><h2>Nếu thương em<br><em>có một giai điệu.</em></h2><p>Một chút MCK. Một chút Wren. Một chút Mr. Siro.<br>Và rất nhiều lần anh muốn nghe cùng em.</p></div><div class="record-player"><div class="vinyl" aria-hidden="true"><span>mỹ tú<br><small>side a · love</small></span></div><div class="record-content"><span class="eyebrow">CHỌN MỘT MOOD</span><div class="artist-options"><button data-artist="MCK" aria-pressed="false">MCK</button><button data-artist="Wren Evans" aria-pressed="true" class="selected">Wren Evans</button><button data-artist="Mr. Siro" aria-pressed="false">Mr. Siro</button></div><p id="musicMood">Một chút tinh nghịch, một chút rung rinh.</p><p id="trackSuggestion" class="track-suggestion">Gợi ý cho em: Thích Em Hơi Nhiều</p><a class="music-link" id="artistLink" href="https://open.spotify.com/search/Th%C3%ADch%20Em%20H%C6%A1i%20Nhi%E1%BB%81u%20Wren%20Evans" target="_blank" rel="noopener noreferrer">Tìm bài hát trên Spotify →</a><span class="record-note">Mở nhạc ở một tab riêng, rồi trở lại đây cùng anh.</span></div></div></section>
-    <section class="surprise-section section" id="surprise"><span class="surprise-star" aria-hidden="true">✧</span><span class="eyebrow">06 / ĐỪNG ĐÓNG TRANG VỘI NHÉ</span><h2>Hoa ở đây là ảo.<br><em>Nhưng thương em là thật.</em></h2><p>Và có một điều ngọt ngào<br>đang chờ được bước ra khỏi màn hình.</p><button class="button button-dark" id="surpriseButton">Chạm để điều kỳ diệu xảy ra <span aria-hidden="true">♡</span></button><p class="reveal-status" id="revealStatus" role="status"></p>
+    <section class="surprise-section section" id="surprise"><div class="finale-orbit" aria-hidden="true"><span>✧</span></div><span class="eyebrow">06 / ĐỪNG ĐÓNG TRANG VỘI NHÉ</span><h2>Hoa ở đây là ảo.<br><em>Nhưng thương em là thật.</em></h2><p>Và có một điều ngọt ngào<br>đang chờ được bước ra khỏi màn hình.</p><button class="button button-dark" id="surpriseButton">Chạm để điều kỳ diệu xảy ra <span aria-hidden="true">♡</span></button><p class="reveal-status" id="revealStatus" role="status"></p>
     <div id="giftReveal" class="gift-reveal cake-reveal" hidden><span class="eyebrow">SPECIAL DELIVERY · GỬI MỸ TÚ</span><h3>Một chút ngọt ngào.<br>Một hộp đầy yêu thương.</h3><button id="openCake" class="cake-box" aria-label="Mở hộp bánh bí mật"><span class="box-back"></span><span class="cake-inside"><span class="cake-cherry">♥</span><span class="cake-icing"></span><span class="cake-body"></span><span class="cake-plate"></span></span><span class="box-front"><span>for Mỹ Tú ♡</span></span><span class="box-lid"><span class="box-bow">୨୧</span></span><span class="box-prompt">Chạm để mở nắp</span></button><div id="pickupReveal" hidden><p class="cake-message">Anh đã đặt cho em một hộp bánh.<br>Vì cô gái anh thương xứng đáng có một ngày thật ngọt.</p><div class="pickup-ticket"><div class="ticket-heading"><span>YOUR SWEET LITTLE MISSION</span><span>♡</span></div><h4>Mỹ Tú, đi nhận một chút thương nhé.</h4><ol class="pickup-steps"><li><span>01</span><div><strong>Xem lời hẹn của anh</strong><p id="pickupTime"></p></div></li><li><span>02</span><div><strong>Đến quầy bảo vệ</strong><p id="pickupLocation"></p></div></li><li><span>03</span><div><strong>Nhận hộp bánh dành cho em</strong><p id="pickupInstruction"></p></div></li></ol><p class="pickup-note" id="pickupStatus"></p><button id="copyPickup" class="text-button">Sao chép chỉ dẫn ♡</button></div><p class="final-love">Màn hình chỉ đến đây thôi.<br><em>Còn yêu thương thì anh gửi tiếp ở ngoài đời.</em></p><button id="replayFlowers" class="text-button">Cho em thêm một lần hoa nở ✿</button></div></div></section>
   </main>
   <footer><a class="brand" href="#"><span class="brand-flower">✧</span> một chút thương.</a><span>Gửi em ngày 20/10, và cả những ngày sau đó.</span><span>Made with love <span class="footer-heart">♡</span></span></footer>
