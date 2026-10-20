@@ -1,4 +1,5 @@
 import { mountSavedPhotos } from './media.js';
+import { characterArt } from './character-art.js';
 import './fonts.js';
 import { startExperience, motionAllowed } from './experience.js';
 import { lily as flower, friends } from './illustrations.js';
@@ -37,7 +38,7 @@ document.querySelector('#secretEntry').addEventListener('click',()=>{
  startExperience();
 });
 const friendMessages={miffy:'Chúc Mỹ Tú 20/10 vui vẻ! Hôm nay cứ thoải mái làm điều em thích nhé.',bibble:'20/10 rồi! Chúc Tú ăn ngon, cười nhiều, nhận quà vui.',snoopy:'Chúc Tú một ngày 20/10 thật chill. Bật bài em thích lên thôi.',bechichi:'Chúc Tú 20/10 vui vẻ nha! Học xong nhớ nghỉ ngơi một chút.',hirono:'Chúc Mỹ Tú thi giữa kỳ thật tốt. Nhớ ngủ đủ để mai còn đi học nhé.'};
-Object.entries(friends).forEach(([name,art])=>document.querySelector(`#${name}Art`).innerHTML=art);
+Object.keys(friends).forEach(name=>document.querySelector(`#${name}Art`).innerHTML=characterArt(name));
 document.querySelectorAll('[data-friend]').forEach(button=>button.addEventListener('click',()=>{
  document.querySelectorAll('[data-friend]').forEach(b=>{b.classList.remove('selected');b.setAttribute('aria-pressed','false');});
  button.classList.add('selected');button.setAttribute('aria-pressed','true');

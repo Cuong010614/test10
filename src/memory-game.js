@@ -1,4 +1,5 @@
-import { friends, friendNames as names } from './illustrations.js';
+import { friendNames as names } from './illustrations.js';
+import { characterArt } from './character-art.js';
 
 const characters=Object.keys(names);
 const totalPairs=characters.length;
@@ -46,7 +47,7 @@ export function setupMemoryGame(){
     deck.forEach((character,index)=>{
       const card=document.createElement('button');card.className='memory-card';card.type='button';card.dataset.character=character;card.dataset.position=index;
       card.setAttribute('aria-label',`Lật thẻ ${index+1}`);card.setAttribute('aria-pressed','false');
-      card.innerHTML=`<span class="memory-card-inner" aria-hidden="true"><span class="memory-card-back"><span class="card-corner">20</span><span class="card-spark">✧</span><span class="card-back-caption">FLIP ME</span><span class="card-corner corner-bottom">10</span></span><span class="memory-card-face">${friends[character]}<span>${names[character]}</span><span class="match-check">✓</span></span></span>`;
+      card.innerHTML=`<span class="memory-card-inner" aria-hidden="true"><span class="memory-card-back"><span class="card-corner">20</span><span class="card-spark">✧</span><span class="card-back-caption">FLIP ME</span><span class="card-corner corner-bottom">10</span></span><span class="memory-card-face">${characterArt(character)}<span>${names[character]}</span><span class="match-check">✓</span></span></span>`;
       card.addEventListener('click',()=>choose(card));board.append(card);
     });
     announce('Em mở một thẻ trước nhé.');

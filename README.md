@@ -40,7 +40,7 @@ Sau khi sửa nội dung, chạy `npm run build:pages` và commit cả mã ngu�
 
 Nhạc nền nhẹ dùng Web Audio và chỉ bật khi bấm nút. Nhạc của MCK/Wren Evans/Mr. Siro mở qua tìm kiếm Spotify ở tab riêng; chưa có file nhạc hoặc trình phát bài hát nhúng. Không tự phát hoặc khẳng định đang phát bản thu của các nghệ sĩ.
 
-Ảnh được thêm trong giao diện chỉ tồn tại trong phiên mở trang, không tải lên máy chủ. Muốn gửi kèm ảnh thật, đặt ảnh trong `public/` rồi thay nội dung các khung bằng thẻ `img` trước khi build. Font Playfair Display và Be Vietnam Pro được đóng gói cùng website, không cần kết nối Google Fonts.
+Ảnh được thêm trong giao diện chỉ tồn tại trong phiên mở trang, không tải lên máy chủ. Ảnh gốc đã được lưu trong `public/` và gắn trong `src/media.js`; khi đổi ảnh, cập nhật đường dẫn tại đây rồi chạy `npm run build:pages`. Font Playfair Display và Be Vietnam Pro được đóng gói cùng website, không cần kết nối Google Fonts.
 
 ## Kiểm tra thủ công
 
@@ -58,6 +58,6 @@ Tham khảo kỹ thuật (không sao chép thiết kế): [Three.js Responsive D
 
 ## Ảnh và hiệu ứng toàn trang
 
-`src/media.js` khai báo ảnh Cô Hai và ba ảnh Mỹ Tú theo đường dẫn tương đối trong `public/`. Khi chưa có ảnh được cung cấp, poster dùng chữ đồ họa và các khung ảnh vẫn cho phép chọn ảnh trong phiên hiện tại; không dùng ảnh người khác thay thế.
+`src/media.js` khai báo ảnh Cô Hai, ba ảnh Mỹ Tú và năm ảnh nhân vật do người gửi chọn, theo đường dẫn tương đối trong `public/`. `src/character-art.js` dùng chung ảnh nhân vật cho trò ghép thẻ và phần hội bạn. Ảnh kỷ niệm hiển thị trọn khung bằng `object-fit: contain`; thứ tự ảnh tương ứng với caption trong `index.html`.
 
 `src/memory-game.js` quản lý xáo bài, lật thẻ, ghép cặp, lượt chơi và đặt lại ván. Trò chơi dùng số cặp từ danh sách nhân vật, hiện là 5 cặp; không chặn việc xem quà. `src/atmosphere.js` dùng một canvas cố định toàn màn hình cho cánh hoa, sao, vệt chuột và hiệu ứng khi chạm; các hạt có giới hạn số lượng và dừng khi tắt hiệu ứng hoặc ẩn tab.

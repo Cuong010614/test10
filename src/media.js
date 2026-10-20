@@ -1,7 +1,18 @@
-// Local image paths, relative to public/. Fill these when the actual photos arrive.
+// User-selected originals, relative to public/.
 export const media = {
-  creatorPortrait: '',
-  memories: [],
+  creatorPortrait: 'Screenshot 2026-10-20 131638.png',
+  characters: {
+    miffy: 'Screenshot 2026-10-20 142650.png',
+    bibble: 'Screenshot 2026-10-20 133624.png',
+    snoopy: 'Screenshot 2026-10-20 142642.png',
+    bechichi: 'Screenshot 2026-10-20 133759.png',
+    hirono: 'Screenshot 2026-10-20 142701.png',
+  },
+  memories: [
+    { src: '1792476527078_2281193348403494968_5294749988580951274_61f0e5b3da9e0096662358c3ac7f41be.jpg', alt: 'Ảnh chụp chung của hai đứa mình' },
+    { src: '1792476527149_2281193348403494968_5294749988580951274_a38981b47ef4871ee961174734bce477.jpg', alt: 'Ảnh chân dung Mỹ Tú' },
+    { src: '1792476527224_2281193348403494968_5294749988580951274_3c2f18bceff5b3d98f2a68e68a5ba0a4.jpg', alt: 'Hai đứa chụp chung với bó hoa' },
+  ],
 };
 
 export function mountSavedPhotos(){
