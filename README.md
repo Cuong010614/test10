@@ -38,7 +38,7 @@ Sau khi sửa nội dung, chạy `npm run build:pages` và commit cả mã ngu�
 - `src/main.js`: tương tác, nhạc nền tổng hợp và các liên kết tìm nhạc.
 - `src/style.css`: giao diện và hoạt ảnh.
 
-Trình phát MP3 trong `src/music-player.js` dùng `public/music.mp3` (Thích Em Hơi Nhiều — Wren Evans). Nhạc bắt đầu từ thao tác thả tim; nút trên đầu trang đồng bộ với điều khiển phát/tạm dừng, tua và âm lượng của trình phát. Nếu trình duyệt chặn phát, người nhận có thể bấm Play. **Đang chờ file MP3 của người gửi**: chưa build lại `docs/` để tránh thay bản đang chạy bằng bản thiếu nhạc. Sau khi thêm `public/music.mp3`, chạy `npm run build:pages` và kiểm tra file nhạc trên Pages.
+Trình phát MP3 trong `src/music-player.js` dùng hai bản nhạc người gửi đã cung cấp: `public/Thích Em Hơi Nhiều.mp3` (Wren Evans) và `public/Tại Vì Sao.mp3` (MCK). Thả tim bắt đầu bài Wren Evans; chọn nghệ sĩ trong ô nhạc để đổi bài và phát ngay. Nút trên đầu trang đồng bộ với điều khiển phát/tạm dừng, tua và âm lượng của trình phát. Nếu trình duyệt chặn phát, người nhận có thể bấm Play. Nhạc phát trong trang, không dùng Spotify hay nhạc tổng hợp. Đường dẫn tôn trọng base `/test10/` của GitHub Pages.
 
 Ảnh được thêm trong giao diện chỉ tồn tại trong phiên mở trang, không tải lên máy chủ. Ảnh gốc đã được lưu trong `public/` và gắn trong `src/media.js`; khi đổi ảnh, cập nhật đường dẫn tại đây rồi chạy `npm run build:pages`. Font Playfair Display và Be Vietnam Pro được đóng gói cùng website, không cần kết nối Google Fonts.
 
