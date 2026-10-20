@@ -1,9 +1,11 @@
-import { friends } from './illustrations.js';
+import { friends, friendNames as names } from './illustrations.js';
 
-const names={miffy:'Miffy',bibble:'Bibble',snoopy:'Snoopy'};
+const characters=Object.keys(names);
+const totalPairs=characters.length;
 export function setupMemoryGame(){
   const board=document.querySelector('#memoryGame');
   const status=document.querySelector('#gameStatus');
+  document.querySelector('#totalPairs').textContent=totalPairs;
   let first=null,locked=false,matches=0,moves=0,resetTimer;
   function announce(message){status.textContent=message;}
   function show(card){
@@ -27,9 +29,9 @@ export function setupMemoryGame(){
       [previous,card].forEach(el=>{el.classList.add('matched');el.setAttribute('aria-disabled','true');el.setAttribute('aria-label',`${names[el.dataset.character]} — đã ghép`);});
       document.querySelector('#matchCount').textContent=matches;
       const rect=card.getBoundingClientRect();
-      window.dispatchEvent(new CustomEvent('gift:burst',{detail:{x:rect.left+rect.width/2,y:rect.top+rect.height/2,amount:matches===3?48:20}}));
-      announce(matches===3?`Đủ 3 cặp trong ${moves} lượt! 20/10 vui vẻ, Mỹ Tú.`:`Tìm được ${names[card.dataset.character]} rồi! Còn ${3-matches} cặp.`);
-      board.classList.toggle('completed',matches===3);
+      window.dispatchEvent(new CustomEvent('gift:burst',{detail:{x:rect.left+rect.width/2,y:rect.top+rect.height/2,amount:matches===totalPairs?48:20}}));
+      announce(matches===totalPairs?`Đủ ${totalPairs} cặp trong ${moves} lượt! 20/10 vui vẻ, Mỹ Tú.`:`Tìm được ${names[card.dataset.character]} rồi! Còn ${totalPairs-matches} cặp.`);
+      board.classList.toggle('completed',matches===totalPairs);
     }else{
       locked=true;announce('Chưa trùng rồi. Nhớ vị trí hai bạn này nhé.');
       resetTimer=setTimeout(()=>{hide(previous);hide(card);locked=false;announce('Thử hai thẻ khác nhé.');},850);
@@ -39,7 +41,7 @@ export function setupMemoryGame(){
     clearTimeout(resetTimer);first=null;locked=false;matches=moves=0;
     document.querySelector('#matchCount').textContent='0';document.querySelector('#moveCount').textContent='0';
     board.classList.remove('completed');board.replaceChildren();
-    const deck=['miffy','bibble','snoopy','miffy','bibble','snoopy'];
+    const deck=[...characters,...characters];
     for(let i=deck.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[deck[i],deck[j]]=[deck[j],deck[i]];}
     deck.forEach((character,index)=>{
       const card=document.createElement('button');card.className='memory-card';card.type='button';card.dataset.character=character;card.dataset.position=index;

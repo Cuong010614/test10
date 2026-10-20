@@ -26,7 +26,7 @@ Sau khi sửa nội dung, chạy `npm run build:pages` và commit cả mã ngu�
 
 1. Trang Cô Hai Báo phong cách poster đường phố đen–vàng, sticker và caption meme. Có liên kết tới TikTok do người gửi cung cấp; không mạo nhận là trang chính thức.
 2. Nút “Thả tim cho Cô Hai” chuyển thẳng sang trang quà bằng hiệu ứng ngắn, không lời thoại, âm báo, màn gọi tên hoặc nút xác nhận trung gian. Tim chỉ là tương tác tại trang, không gửi lượt thích lên TikTok. Tiêu đề và mô tả ban đầu không tiết lộ quà.
-3. Trang quà mở đầu bằng lời chúc 20/10, thư ngắn, bó hoa ly 3D, trò lật thẻ ba cặp Miffy/Bibble/Snoopy, khung ảnh và góc nhạc.
+3. Trang quà mở đầu bằng lời chúc 20/10, thư ngắn, bó hoa ly 3D, trò lật thẻ năm cặp Miffy/Bibble/Snoopy/Bechichi/Hirono, khung ảnh và góc nhạc.
 4. Nút cuối bung 64–100 bông hoa ly, rồi hiện hộp bánh. Mở nắp mới hiện chỉ dẫn nhận tại quầy bảo vệ cổng 2, ngày 20/10.
 5. Có nút sao chép chỉ dẫn và xem lại hoa nở. Chế độ giảm chuyển động bỏ hiệu ứng nhưng giữ toàn bộ nội dung.
 
@@ -60,4 +60,4 @@ Tham khảo kỹ thuật (không sao chép thiết kế): [Three.js Responsive D
 
 `src/media.js` khai báo ảnh Cô Hai và ba ảnh Mỹ Tú theo đường dẫn tương đối trong `public/`. Khi chưa có ảnh được cung cấp, poster dùng chữ đồ họa và các khung ảnh vẫn cho phép chọn ảnh trong phiên hiện tại; không dùng ảnh người khác thay thế.
 
-`src/memory-game.js` quản lý xáo bài, lật thẻ, ghép cặp, lượt chơi và đặt lại ván. Trò chơi không chặn việc xem quà. `src/atmosphere.js` dùng một canvas cố định toàn màn hình cho cánh hoa, sao, vệt chuột và hiệu ứng khi chạm; các hạt có giới hạn số lượng và dừng khi tắt hiệu ứng hoặc ẩn tab.
+`src/memory-game.js` quản lý xáo bài, lật thẻ, ghép cặp, lượt chơi và đặt lại ván. Trò chơi dùng số cặp từ danh sách nhân vật, hiện là 5 cặp; không chặn việc xem quà. `src/atmosphere.js` dùng một canvas cố định toàn màn hình cho cánh hoa, sao, vệt chuột và hiệu ứng khi chạm; các hạt có giới hạn số lượng và dừng khi tắt hiệu ứng hoặc ẩn tab.

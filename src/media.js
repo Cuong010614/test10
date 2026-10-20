@@ -12,7 +12,7 @@ export function mountSavedPhotos(){
   }
   media.memories.slice(0,3).forEach((item,index)=>{
     const target=document.querySelector(`[data-photo="${index}"]`);
-    const image=new Image();image.alt=item.alt||`Ảnh Mỹ Tú ${index+1}`;image.loading='lazy';
+    const image=new Image();image.alt=item.alt||`Ảnh Mỹ Tú ${index+1}`;image.loading='eager';
     image.addEventListener('load',()=>{target.replaceChildren(image);target.setAttribute('aria-label',`Thay ảnh Mỹ Tú ${index+1}`);},{once:true});
     image.src=import.meta.env.BASE_URL+item.src;
     if(item.position)image.style.objectPosition=item.position;
