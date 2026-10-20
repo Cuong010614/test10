@@ -27,11 +27,12 @@ export function setupDetails() {
   }, { rootMargin: '80px' });
   sections.forEach((section, index) => {
     section.classList.add('detail-section');
+    observer.observe(section);
+    if (section.id === 'surprise') return;
     const type = ['flower', 'bow', 'star', 'flower', 'bubbles', 'music', 'bow'][index];
     ornament(section, 'section-doodle doodle-left', icon(type));
     ornament(section, 'section-doodle doodle-right', icon(index % 2 ? 'star' : type));
     ornament(section, 'section-stitch', '<i></i><i></i><i></i>');
-    observer.observe(section);
   });
   const hero = document.querySelector('.hero');
   ornament(hero, 'edge-petal petal-left', '');
@@ -73,9 +74,6 @@ export function setupDetails() {
   const player = document.querySelector('.record-content');
   ornament(player, 'music-bars', Array.from({ length: 19 }, (_, i) =>
     `<i style="--bar-delay:${-(i % 7) * .13}s;--bar-height:${12 + (i * 17 % 25)}px"></i>`).join(''));
-  const surprise = document.querySelector('#surprise');
-  ornament(surprise, 'gift-streamer streamer-left', icon('bow'));
-  ornament(surprise, 'gift-streamer streamer-right', icon('bow'));
   setupPhotoViewer();
 }
 

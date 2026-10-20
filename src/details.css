@@ -73,3 +73,17 @@
  .section-doodle,.edge-petal,.gift-streamer,.cake-box,.music-bars i,.memory-card.matched .character-photo{animation:none!important}
  .motif-particle{display:none}.is-playing .music-bars i{transform:scaleY(.6)}
 }
+
+/* The finale has one bow, attached to the lid, which unties before it lifts. */
+#giftWorld .box-bow{display:block;width:80px;height:40px;top:-32px;left:calc(50% - 40px);font-size:0;z-index:2}
+.box-bow i{position:absolute;display:block;transition:transform .3s ease,opacity .3s ease}
+.bow-loop{top:3px;width:36px;height:25px;border:5px solid #c59b72;background:#e6c79b;border-radius:65% 65% 20% 65%;box-shadow:inset 0 0 0 2px #f5dfbf}
+.bow-loop-left{left:3px;transform:rotate(20deg);transform-origin:right bottom}
+.bow-loop-right{right:3px;transform:rotate(-20deg);transform-origin:left bottom}
+.bow-knot{width:17px;height:20px;left:32px;top:19px;background:#c59b72;border-radius:5px;box-shadow:inset 3px 0 #e5c194}
+.opened .bow-loop-left{transform:translate(-45px,10px) rotate(-35deg) scaleX(.5);opacity:0}
+.opened .bow-loop-right{transform:translate(45px,10px) rotate(35deg) scaleX(.5);opacity:0}
+.opened .bow-knot{transform:translateY(15px) scale(.3);opacity:0}
+#giftWorld .opened .box-lid{transition-delay:.3s}
+.motion-paused .box-bow i,.motion-paused .box-lid{transition:none!important}
+@media(prefers-reduced-motion:reduce){#giftWorld .opened .box-lid{transition-delay:0s}}
