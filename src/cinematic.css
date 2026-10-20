@@ -22,3 +22,5 @@
 .memory-card-face>.character-photo{display:block;width:88%;height:70%;object-fit:contain;border-radius:0;background:transparent}
 
 .polaroid .photo-date{display:block;margin-top:20px;text-align:center}
+
+#giftAudio{display:block;width:100%;max-width:100%;margin:18px 0}.record-content{min-width:0}.record-player:not(.is-playing) .vinyl{animation-play-state:paused}#musicStatus{font-size:11px;line-height:1.8}

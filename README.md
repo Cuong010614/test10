@@ -38,13 +38,13 @@ Sau khi sửa nội dung, chạy `npm run build:pages` và commit cả mã ngu�
 - `src/main.js`: tương tác, nhạc nền tổng hợp và các liên kết tìm nhạc.
 - `src/style.css`: giao diện và hoạt ảnh.
 
-Nhạc nền nhẹ dùng Web Audio và chỉ bật khi bấm nút. Nhạc của MCK/Wren Evans/Mr. Siro mở qua tìm kiếm Spotify ở tab riêng; chưa có file nhạc hoặc trình phát bài hát nhúng. Không tự phát hoặc khẳng định đang phát bản thu của các nghệ sĩ.
+Trình phát MP3 trong `src/music-player.js` dùng `public/music.mp3` (Thích Em Hơi Nhiều — Wren Evans). Nhạc bắt đầu từ thao tác thả tim; nút trên đầu trang đồng bộ với điều khiển phát/tạm dừng, tua và âm lượng của trình phát. Nếu trình duyệt chặn phát, người nhận có thể bấm Play. **Đang chờ file MP3 của người gửi**: chưa build lại `docs/` để tránh thay bản đang chạy bằng bản thiếu nhạc. Sau khi thêm `public/music.mp3`, chạy `npm run build:pages` và kiểm tra file nhạc trên Pages.
 
 Ảnh được thêm trong giao diện chỉ tồn tại trong phiên mở trang, không tải lên máy chủ. Ảnh gốc đã được lưu trong `public/` và gắn trong `src/media.js`; khi đổi ảnh, cập nhật đường dẫn tại đây rồi chạy `npm run build:pages`. Font Playfair Display và Be Vietnam Pro được đóng gói cùng website, không cần kết nối Google Fonts.
 
 ## Kiểm tra thủ công
 
-Kiểm tra màn hình 1440px, 390px và 320px: trang bìa che nội dung quà, chuyển thẳng sau một lần thả tim, mở/đóng thư bằng nút và Escape, trò lật thẻ (trúng/sai/chơi lại), chọn nhân vật, bật/tắt nhạc nền, liên kết Spotify, thêm ảnh, hoa bung, mở hộp và sao chép chỉ dẫn. Thử lại với `prefers-reduced-motion: reduce`. Không có backend hoặc thông báo tự động gửi cho người nhận.
+Kiểm tra màn hình 1440px, 390px và 320px: trang bìa che nội dung quà, chuyển thẳng sau một lần thả tim, mở/đóng thư bằng nút và Escape, trò lật thẻ (trúng/sai/chơi lại), chọn nhân vật, bật/tắt nhạc MP3, tua bài và đồng bộ điều khiển, thêm ảnh, hoa bung, mở hộp và sao chép chỉ dẫn. Thử lại với `prefers-reduced-motion: reduce`. Không có backend hoặc thông báo tự động gửi cho người nhận.
 
 ## Bản trải nghiệm 3D
 

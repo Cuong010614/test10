@@ -1,3 +1,4 @@
+import { setupMusicPlayer } from './music-player.js';
 import { mountSavedPhotos } from './media.js';
 import { characterArt } from './character-art.js';
 import './fonts.js';
@@ -18,15 +19,14 @@ function toast(text){const el=document.querySelector('#toast');el.textContent=te
 const input=document.querySelector('#photoInput');let photoTarget=null;const photoUrls=new Map();
 document.querySelectorAll('[data-photo]').forEach(button=>button.addEventListener('click',()=>{photoTarget=button;input.value='';input.click();}));
 input.addEventListener('change',async()=>{const file=input.files?.[0];if(!file||!photoTarget)return;if(!['image/jpeg','image/png','image/webp','image/gif'].includes(file.type)){toast('Em chọn ảnh JPG, PNG, WebP hoặc GIF nhé.');return;}if(file.size>15*1024*1024){toast('Em chọn ảnh nhỏ hơn 15 MB nhé.');return;}const target=photoTarget;const url=URL.createObjectURL(file);const img=new Image();img.alt='Ảnh kỷ niệm của chúng mình';try{img.src=url;await img.decode();const old=photoUrls.get(target);if(old)URL.revokeObjectURL(old);photoUrls.set(target,url);target.replaceChildren(img);target.setAttribute('aria-label','Thay ảnh kỷ niệm');toast('Đã thêm ảnh.');}catch{URL.revokeObjectURL(url);toast('Chưa đọc được ảnh này. Em thử ảnh khác nhé.');}});
-let audioContext=null,musicTimer=null,musicOn=false,noteIndex=0;const notes=[261.63,329.63,392,523.25,440,392,329.63,293.66,261.63,329.63,392,440,349.23,329.63,293.66,261.63];
-function playNote(){if(!audioContext||!musicOn)return;const oscillator=audioContext.createOscillator();const gain=audioContext.createGain();oscillator.type='sine';oscillator.frequency.value=notes[noteIndex++%notes.length];gain.gain.setValueAtTime(0,audioContext.currentTime);gain.gain.linearRampToValueAtTime(.075,audioContext.currentTime+.03);gain.gain.exponentialRampToValueAtTime(.001,audioContext.currentTime+1.7);oscillator.connect(gain);gain.connect(audioContext.destination);oscillator.start();oscillator.stop(audioContext.currentTime+1.8);oscillator.onended=()=>{oscillator.disconnect();gain.disconnect();};}
-const musicButton=document.querySelector('#musicToggle');musicButton.addEventListener('click',async()=>{try{if(!audioContext)audioContext=new(window.AudioContext||window.webkitAudioContext)();if(musicOn){musicOn=false;clearInterval(musicTimer);await audioContext.suspend();}else{await audioContext.resume();musicOn=true;playNote();musicTimer=setInterval(playNote,650);}musicButton.setAttribute('aria-pressed',String(musicOn));musicButton.querySelector('.sound-label').textContent=musicOn?'Tắt nhạc nền':'Nhạc nền nhẹ';}catch{toast('Trình duyệt chưa hỗ trợ phát nhạc. Em thử lại nhé.');}});
+const musicPlayer = setupMusicPlayer();
 
 // A single heart click reveals the gift without an intermediate screen.
 const cover=document.querySelector('#coverPage');
 const world=document.querySelector('#giftWorld');
 const reduceMotion=()=>!motionAllowed();
 document.querySelector('#secretEntry').addEventListener('click',()=>{
+ musicPlayer.play();
  cover.hidden=true;
  world.hidden=false;
  document.body.classList.remove('gate-active');
@@ -49,15 +49,6 @@ document.querySelectorAll('[data-friend]').forEach(button=>button.addEventListen
  document.querySelectorAll('[data-friend]').forEach(b=>{b.classList.remove('selected');b.setAttribute('aria-pressed','false');});
  button.classList.add('selected');button.setAttribute('aria-pressed','true');
  document.querySelector('#friendMessage').textContent=friendMessages[button.dataset.friend];
-}));
-const moods={'MCK':'Một bài MCK cho đúng gu em.','Wren Evans':'Bật lên cho ngày thêm vui.','Mr. Siro':'Đổi sang Mr. Siro nghe một chút.'};
-document.querySelectorAll('[data-artist]').forEach(button=>button.addEventListener('click',()=>{
- document.querySelectorAll('[data-artist]').forEach(b=>{b.classList.remove('selected');b.setAttribute('aria-pressed','false');});
- button.classList.add('selected');button.setAttribute('aria-pressed','true');
- const artist=button.dataset.artist;document.querySelector('#musicMood').textContent=moods[artist];
- const track={'MCK':'Tại Vì Sao','Wren Evans':'Thích Em Hơi Nhiều'}[artist];
- document.querySelector('#trackSuggestion').textContent=track?`Gợi ý cho em: ${track}`:'Một góc nhạc dành cho những lúc muốn lắng lại.';
- const link=document.querySelector('#artistLink');link.href=`https://open.spotify.com/search/${encodeURIComponent(track?`${track} ${artist}`:artist)}`;link.textContent=track?'Tìm bài hát trên Spotify →':`Tìm ${artist} trên Spotify →`;
 }));
 // Finite burst with bounded particles and a reduced-motion alternative.
 let bloomCleanup;
