@@ -39,9 +39,9 @@ document.querySelector('#secretEntry').addEventListener('click',()=>{
 });
 const friendMessages={
  miffy:'20/10 vui vẻ nha, Mỹ Tú!',
- bibble:'Hôm nay ăn ngon, cười nhiều nhé!',
- snoopy:'Chúc Tú một ngày thật chill.',
- bechichi:'Chúc Tú luôn khỏe, ngủ đủ giấc.',
+ bibble:'Nay ăn gì ngon nhớ rủ anh nha!',
+ snoopy:'Học xong rồi nghỉ xíu nha.',
+ bechichi:'Ngủ sớm nha, đừng thức khuya quá.',
  hirono:'Thi tốt, đạt điểm như ý nha!',
 };
 Object.keys(friends).forEach(name=>document.querySelector(`#${name}Art`).innerHTML=characterArt(name));
