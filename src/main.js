@@ -37,7 +37,13 @@ document.querySelector('#secretEntry').addEventListener('click',()=>{
  heading.focus({preventScroll:true});
  startExperience();
 });
-const friendMessages={miffy:'Chúc Mỹ Tú 20/10 vui vẻ! Hôm nay cứ thoải mái làm điều em thích nhé.',bibble:'20/10 rồi! Chúc Tú ăn ngon, cười nhiều, nhận quà vui.',snoopy:'Chúc Tú một ngày 20/10 thật chill. Bật bài em thích lên thôi.',bechichi:'Chúc Tú 20/10 vui vẻ nha! Học xong nhớ nghỉ ngơi một chút.',hirono:'Chúc Mỹ Tú thi giữa kỳ thật tốt. Nhớ ngủ đủ để mai còn đi học nhé.'};
+const friendMessages={
+ miffy:'20/10 vui vẻ nha, Mỹ Tú!',
+ bibble:'Hôm nay ăn ngon, cười nhiều nhé!',
+ snoopy:'Chúc Tú một ngày thật chill.',
+ bechichi:'Chúc Tú luôn khỏe, ngủ đủ giấc.',
+ hirono:'Thi tốt, đạt điểm như ý nha!',
+};
 Object.keys(friends).forEach(name=>document.querySelector(`#${name}Art`).innerHTML=characterArt(name));
 document.querySelectorAll('[data-friend]').forEach(button=>button.addEventListener('click',()=>{
  document.querySelectorAll('[data-friend]').forEach(b=>{b.classList.remove('selected');b.setAttribute('aria-pressed','false');});
