@@ -48,7 +48,7 @@ Kiểm tra màn hình 1440px, 390px và 320px: trang bìa che nội dung quà, c
 
 ## Bản trải nghiệm 3D
 
-- Hoa ly dựng bằng hình học 3D: cánh hoa cong, nhụy, lá, cành, giấy gói và nơ. Góc nhìn chính dùng ảnh bó hoa ly dựng mới, tách nền trong `public/bouquet-luxury.png`. Mô-đun Three.js chỉ tải khi bấm “Ngắm hoa 3D”. Nếu WebGL không hoạt động hoặc mất context, trang trở lại ảnh bó hoa.
+- Hoa ly dựng bằng hình học 3D: cánh hoa cong, nhụy, lá, cành, giấy gói và nơ. Bó hoa 3D hiện mặc định sau khi thả tim; mô-đun Three.js tải ở bước này. Nút “Xem ảnh bó hoa” chuyển sang ảnh bó ly tách nền trong `public/bouquet-luxury.png`. Nếu WebGL không hoạt động hoặc mất context, trang trở lại ảnh bó hoa.
 - Bó hoa theo chuyển động chuột, có nút xoay và trở về góc ban đầu; tự dừng khi nằm ngoài màn hình hoặc tab bị ẩn. Giới hạn render 30 fps, mật độ pixel tối đa 1.35 trên mobile và 1.7 trên desktop.
 - Hạt sáng, dấu chuột, nghiêng khung ảnh, xuất hiện theo cuộn, đĩa nhạc quay, vòng sáng cuối và chuyển cảnh không lời.
 - Nút “Hiệu ứng” tắt các chuyển động. Tôn trọng `prefers-reduced-motion`; toàn bộ thư, ảnh, nhạc và chỉ dẫn vẫn sử dụng được khi tắt hiệu ứng.

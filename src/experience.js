@@ -20,12 +20,12 @@ export function startExperience(){
  const art=document.querySelector('.hero-art');
  const mode=document.querySelector('#bouquetMode');
  const hint=document.querySelector('#sceneHint');
- let loading=false,photoMode=true;
+ let loading=false,photoMode=false;
  function syncMode(){
   art.classList.toggle('bouquet-photo-mode',photoMode);
   canvasHost.hidden=photoMode;
   mode.setAttribute('aria-pressed',String(!photoMode));
-  mode.textContent=photoMode?'Ngắm hoa 3D':'Về bó hoa';
+  mode.textContent=photoMode?'Ngắm hoa 3D':'Xem ảnh bó hoa';
   document.querySelector('#rotateBouquet').hidden=photoMode||!scene;
   document.querySelector('#resetBouquet').hidden=photoMode||!scene;
   hint.textContent=photoMode?'Hoa ly hồng & trắng · Dành cho Mỹ Tú':'Chạm nút để xoay bó hoa';
@@ -33,16 +33,20 @@ export function startExperience(){
  }
  const ready=()=>{canvasHost.dataset.state='ready';art.classList.add('has-3d');};
  const fallback=()=>{canvasHost.dataset.state='fallback';art.classList.remove('has-3d');photoMode=true;syncMode();mode.hidden=true;};
- mode.addEventListener('click',async()=>{
-  photoMode=!photoMode;syncMode();
+ async function loadScene(){
   if(photoMode||scene||loading)return;
   loading=true;mode.disabled=true;hint.textContent='Đang chuẩn bị hoa 3D…';
   try{const {mountBouquet}=await import('./bouquet-3d.js');scene=mountBouquet(canvasHost,{motionAllowed,onReady:ready,onFallback:fallback});}
   catch{fallback();}
   finally{loading=false;mode.disabled=false;syncMode();}
+ }
+ mode.addEventListener('click',()=>{
+  photoMode=!photoMode;syncMode();
+  void loadScene();
  });
  document.querySelector('#luxuryBouquet').addEventListener('error',()=>{photoMode=false;syncMode();art.classList.add('photo-unavailable');});
  syncMode();
+ void loadScene();
  document.querySelector('#rotateBouquet').addEventListener('click',()=>scene?.rotate());
  document.querySelector('#resetBouquet').addEventListener('click',()=>scene?.reset());
  const reveal=new IntersectionObserver(entries=>{entries.forEach(({isIntersecting,target})=>{if(isIntersecting){target.classList.add('in-view');reveal.unobserve(target);}});},{threshold:.08});
