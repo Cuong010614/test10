@@ -24,9 +24,9 @@ Sau khi sửa nội dung, chạy `npm run build:pages` và commit cả mã ngu�
 
 ## Hành trình
 
-1. Trang giới thiệu Cô Hai Báo, phong cách fan club mukbang. Có liên kết tới TikTok do người gửi cung cấp; không mạo nhận là trang chính thức.
+1. Trang Cô Hai Báo phong cách poster đường phố đen–vàng, sticker và caption meme. Có liên kết tới TikTok do người gửi cung cấp; không mạo nhận là trang chính thức.
 2. Nút “Thả tim cho Cô Hai” chuyển thẳng sang trang quà bằng hiệu ứng ngắn, không lời thoại, âm báo, màn gọi tên hoặc nút xác nhận trung gian. Tim chỉ là tương tác tại trang, không gửi lượt thích lên TikTok. Tiêu đề và mô tả ban đầu không tiết lộ quà.
-3. Thế giới quà tặng: hoa ly SVG, thư, lời nhắn, khung ảnh, minh họa Miffy/Bibble/Snoopy và góc nhạc.
+3. Trang quà mở đầu bằng lời chúc 20/10, thư ngắn, bó hoa ly 3D, trò lật thẻ ba cặp Miffy/Bibble/Snoopy, khung ảnh và góc nhạc.
 4. Nút cuối bung 64–100 bông hoa ly, rồi hiện hộp bánh. Mở nắp mới hiện chỉ dẫn nhận tại quầy bảo vệ cổng 2, ngày 20/10.
 5. Có nút sao chép chỉ dẫn và xem lại hoa nở. Chế độ giảm chuyển động bỏ hiệu ứng nhưng giữ toàn bộ nội dung.
 
@@ -44,7 +44,7 @@ Nhạc nền nhẹ dùng Web Audio và chỉ bật khi bấm nút. Nhạc của 
 
 ## Kiểm tra thủ công
 
-Kiểm tra màn hình 1440px, 390px và 320px: trang bìa che nội dung quà, chuyển thẳng sau một lần thả tim, mở/đóng thư bằng nút và Escape, chọn hoa, chọn nhân vật, bật/tắt nhạc nền, liên kết Spotify, thêm ảnh, hoa bung, mở hộp và sao chép chỉ dẫn. Thử lại với `prefers-reduced-motion: reduce`. Không có backend hoặc thông báo tự động gửi cho người nhận.
+Kiểm tra màn hình 1440px, 390px và 320px: trang bìa che nội dung quà, chuyển thẳng sau một lần thả tim, mở/đóng thư bằng nút và Escape, trò lật thẻ (trúng/sai/chơi lại), chọn nhân vật, bật/tắt nhạc nền, liên kết Spotify, thêm ảnh, hoa bung, mở hộp và sao chép chỉ dẫn. Thử lại với `prefers-reduced-motion: reduce`. Không có backend hoặc thông báo tự động gửi cho người nhận.
 
 ## Bản trải nghiệm 3D
 
@@ -55,3 +55,9 @@ Kiểm tra màn hình 1440px, 390px và 320px: trang bìa che nội dung quà, c
 - `src/bouquet-3d.js`: cảnh Three.js. `src/experience.js`: quản lý chuyển động, vùng nhìn và tương tác. `src/cinematic.css`: thiết kế mới. `src/fonts.js`: font nội bộ.
 
 Tham khảo kỹ thuật (không sao chép thiết kế): [Three.js Responsive Design](https://github.com/mrdoob/three.js/blob/r180/manual/en/responsive.html), [MDN Intersection Observer](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API).
+
+## Ảnh và hiệu ứng toàn trang
+
+`src/media.js` khai báo ảnh Cô Hai và ba ảnh Mỹ Tú theo đường dẫn tương đối trong `public/`. Khi chưa có ảnh được cung cấp, poster dùng chữ đồ họa và các khung ảnh vẫn cho phép chọn ảnh trong phiên hiện tại; không dùng ảnh người khác thay thế.
+
+`src/memory-game.js` quản lý xáo bài, lật thẻ, ghép cặp, lượt chơi và đặt lại ván. Trò chơi không chặn việc xem quà. `src/atmosphere.js` dùng một canvas cố định toàn màn hình cho cánh hoa, sao, vệt chuột và hiệu ứng khi chạm; các hạt có giới hạn số lượng và dừng khi tắt hiệu ứng hoặc ẩn tab.
