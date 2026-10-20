@@ -58,6 +58,6 @@ Tham khảo kỹ thuật (không sao chép thiết kế): [Three.js Responsive D
 
 ## Ảnh và hiệu ứng toàn trang
 
-`src/media.js` khai báo ảnh Cô Hai, ba ảnh Mỹ Tú và năm ảnh nhân vật do người gửi chọn, theo đường dẫn tương đối trong `public/`. `src/character-art.js` dùng chung ảnh nhân vật cho trò ghép thẻ và phần hội bạn. Ảnh kỷ niệm hiển thị trọn khung bằng `object-fit: contain`; thứ tự ảnh tương ứng với caption trong `index.html`.
+`src/media.js` khai báo ảnh Cô Hai, ba ảnh Mỹ Tú và năm ảnh nhân vật do người gửi chọn, theo đường dẫn tương đối trong `public/`. `src/character-art.js` dùng chung ảnh nhân vật cho trò ghép thẻ và phần hội bạn. Ảnh kỷ niệm hiển thị trọn khung bằng `object-fit: contain`; mỗi ảnh chỉ giữ nhãn OUR LITTLE MOMENT. Các ảnh nhân vật tách nền nằm trong `public/characters/`, bản gốc vẫn được giữ lại trong `public/`.
 
 `src/memory-game.js` quản lý xáo bài, lật thẻ, ghép cặp, lượt chơi và đặt lại ván. Trò chơi dùng số cặp từ danh sách nhân vật, hiện là 5 cặp; không chặn việc xem quà. `src/atmosphere.js` dùng một canvas cố định toàn màn hình cho cánh hoa, sao, vệt chuột và hiệu ứng khi chạm; các hạt có giới hạn số lượng và dừng khi tắt hiệu ứng hoặc ẩn tab.

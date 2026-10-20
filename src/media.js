@@ -2,11 +2,11 @@
 export const media = {
   creatorPortrait: 'Screenshot 2026-10-20 131638.png',
   characters: {
-    miffy: 'Screenshot 2026-10-20 142650.png',
-    bibble: 'Screenshot 2026-10-20 133624.png',
-    snoopy: 'Screenshot 2026-10-20 142642.png',
-    bechichi: 'Screenshot 2026-10-20 133759.png',
-    hirono: 'Screenshot 2026-10-20 142701.png',
+    miffy: 'characters/miffy.png',
+    bibble: 'characters/bibble.png',
+    snoopy: 'characters/snoopy.png',
+    bechichi: 'characters/bechichi.png',
+    hirono: 'characters/hirono.png',
   },
   memories: [
     { src: '1792476527078_2281193348403494968_5294749988580951274_61f0e5b3da9e0096662358c3ac7f41be.jpg', alt: 'Ảnh chụp chung của hai đứa mình' },

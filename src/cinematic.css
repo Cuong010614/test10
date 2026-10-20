@@ -18,5 +18,7 @@
 #giftWorld .memory-image img{display:block;object-fit:contain}
 #giftWorld .memory-image:has(img):before{display:none}
 /* Original character pictures stay fully visible in both card sizes. */
-.friend-drawing .character-photo{display:block;width:100%;height:210px;object-fit:contain;border-radius:12px;background:#fff}
-.memory-card-face>.character-photo{display:block;width:88%;height:70%;object-fit:contain;border-radius:6px;background:#fff}
+.friend-drawing .character-photo{display:block;width:100%;height:210px;object-fit:contain;border-radius:0;background:transparent}
+.memory-card-face>.character-photo{display:block;width:88%;height:70%;object-fit:contain;border-radius:0;background:transparent}
+
+.polaroid .photo-date{display:block;margin-top:20px;text-align:center}
