@@ -87,3 +87,19 @@
 #giftWorld .opened .box-lid{transition-delay:.3s}
 .motion-paused .box-bow i,.motion-paused .box-lid{transition:none!important}
 @media(prefers-reduced-motion:reduce){#giftWorld .opened .box-lid{transition-delay:0s}}
+/* A detailed florist-style bouquet is the primary view; 3D stays optional. */
+#giftWorld .hero-art{height:710px;min-width:0}
+.luxury-bouquet{position:absolute;inset:0 0 72px;width:100%;height:calc(100% - 72px);object-fit:contain;z-index:3;filter:drop-shadow(0 24px 22px #09050d55);transform-origin:50% 80%;pointer-events:none}
+.hero-art:not(.bouquet-photo-mode) .luxury-bouquet{display:none}
+.bouquet-photo-mode .bouquet-card{visibility:hidden}
+#giftWorld .hero-art .scene-controls{bottom:24px;gap:6px}
+#giftWorld .hero-art .scene-hint{bottom:4px}
+#giftWorld .hero-art .date-stamp{right:-6px;bottom:100px;width:66px;height:66px}
+#giftWorld .hero-art .date-stamp strong{font-size:23px}
+.hero-art .scene-controls button{min-height:44px}
+.details-visible .bouquet-photo-mode .luxury-bouquet{animation:bouquet-sway 8s ease-in-out infinite alternate}
+@keyframes bouquet-sway{from{transform:rotate(-1deg) translateY(0)}to{transform:rotate(1deg) translateY(-8px)}}
+.motion-paused .luxury-bouquet{animation:none!important}
+@media(max-width:760px){#giftWorld .hero-art{height:570px;width:100%;max-width:450px;margin:0 auto}#giftWorld .hero-art .date-stamp{right:0;bottom:100px;width:58px;height:58px}.hero-art .scene-coordinate{display:none}.luxury-bouquet{inset:0 -10px 70px;width:calc(100% + 20px);height:calc(100% - 70px)}}
+@media(max-width:360px){#giftWorld .hero-art{height:500px}}
+@media(prefers-reduced-motion:reduce){.luxury-bouquet{animation:none!important}}

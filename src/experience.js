@@ -17,9 +17,32 @@ export function startExperience(){
  motionButton.addEventListener('click',()=>{enabled=!enabled;syncMotion();});
  reduced.addEventListener('change',()=>{enabled=!reduced.matches;syncMotion();});
  const canvasHost=document.querySelector('#bouquet3d');
- const ready=()=>{canvasHost.dataset.state='ready';document.querySelector('.hero-art').classList.add('has-3d');document.querySelector('#sceneControls').hidden=false;document.querySelector('#sceneHint').textContent='Di chuột để ngắm hoa · Chạm nút để xoay';};
- const fallback=()=>{canvasHost.dataset.state='fallback';document.querySelector('.hero-art').classList.remove('has-3d');document.querySelector('#sceneControls').hidden=true;document.querySelector('#sceneHint').textContent='Một bó hoa ly dành riêng cho em';};
- import('./bouquet-3d.js').then(({mountBouquet})=>{scene=mountBouquet(canvasHost,{motionAllowed,onReady:ready,onFallback:fallback});}).catch(fallback);
+ const art=document.querySelector('.hero-art');
+ const mode=document.querySelector('#bouquetMode');
+ const hint=document.querySelector('#sceneHint');
+ let loading=false,photoMode=true;
+ function syncMode(){
+  art.classList.toggle('bouquet-photo-mode',photoMode);
+  canvasHost.hidden=photoMode;
+  mode.setAttribute('aria-pressed',String(!photoMode));
+  mode.textContent=photoMode?'Ngắm hoa 3D':'Về bó hoa';
+  document.querySelector('#rotateBouquet').hidden=photoMode||!scene;
+  document.querySelector('#resetBouquet').hidden=photoMode||!scene;
+  hint.textContent=photoMode?'Hoa ly hồng & trắng · Dành cho Mỹ Tú':'Chạm nút để xoay bó hoa';
+  scene?.sync();
+ }
+ const ready=()=>{canvasHost.dataset.state='ready';art.classList.add('has-3d');};
+ const fallback=()=>{canvasHost.dataset.state='fallback';art.classList.remove('has-3d');photoMode=true;syncMode();mode.hidden=true;};
+ mode.addEventListener('click',async()=>{
+  photoMode=!photoMode;syncMode();
+  if(photoMode||scene||loading)return;
+  loading=true;mode.disabled=true;hint.textContent='Đang chuẩn bị hoa 3D…';
+  try{const {mountBouquet}=await import('./bouquet-3d.js');scene=mountBouquet(canvasHost,{motionAllowed,onReady:ready,onFallback:fallback});}
+  catch{fallback();}
+  finally{loading=false;mode.disabled=false;syncMode();}
+ });
+ document.querySelector('#luxuryBouquet').addEventListener('error',()=>{photoMode=false;syncMode();art.classList.add('photo-unavailable');});
+ syncMode();
  document.querySelector('#rotateBouquet').addEventListener('click',()=>scene?.rotate());
  document.querySelector('#resetBouquet').addEventListener('click',()=>scene?.reset());
  const reveal=new IntersectionObserver(entries=>{entries.forEach(({isIntersecting,target})=>{if(isIntersecting){target.classList.add('in-view');reveal.unobserve(target);}});},{threshold:.08});

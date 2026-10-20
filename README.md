@@ -48,7 +48,7 @@ Kiểm tra màn hình 1440px, 390px và 320px: trang bìa che nội dung quà, c
 
 ## Bản trải nghiệm 3D
 
-- Hoa ly dựng bằng hình học 3D: cánh hoa cong, nhụy, lá, cành, giấy gói và nơ. Mô-đun Three.js chỉ tải sau khi thả tim. Nếu WebGL không hoạt động hoặc mất context, bó hoa SVG vẫn hiện.
+- Hoa ly dựng bằng hình học 3D: cánh hoa cong, nhụy, lá, cành, giấy gói và nơ. Góc nhìn chính dùng ảnh bó hoa ly dựng mới, tách nền trong `public/bouquet-luxury.png`. Mô-đun Three.js chỉ tải khi bấm “Ngắm hoa 3D”. Nếu WebGL không hoạt động hoặc mất context, trang trở lại ảnh bó hoa.
 - Bó hoa theo chuyển động chuột, có nút xoay và trở về góc ban đầu; tự dừng khi nằm ngoài màn hình hoặc tab bị ẩn. Giới hạn render 30 fps, mật độ pixel tối đa 1.35 trên mobile và 1.7 trên desktop.
 - Hạt sáng, dấu chuột, nghiêng khung ảnh, xuất hiện theo cuộn, đĩa nhạc quay, vòng sáng cuối và chuyển cảnh không lời.
 - Nút “Hiệu ứng” tắt các chuyển động. Tôn trọng `prefers-reduced-motion`; toàn bộ thư, ảnh, nhạc và chỉ dẫn vẫn sử dụng được khi tắt hiệu ứng.
@@ -65,3 +65,5 @@ Tham khảo kỹ thuật (không sao chép thiết kế): [Three.js Responsive D
 ## Chi tiết trang trí
 
 `src/details.js` và `src/details.css` thêm họa tiết SVG, băng keo giấy, dấu 20/10, kẹp và sticker ảnh, họa tiết riêng cho từng nhân vật, hiệu ứng ghép đúng. Phần quà chỉ giữ một nơ trên hộp; nơ tách ra trước khi nắp mở, không thêm nơ trang trí quanh phần này. Họa tiết không nhận thao tác chuột/chạm và được ẩn khỏi cây trợ năng. Burst nhân vật giới hạn 7 hạt, tự dọn sau 950 ms. Thanh nhịp nhạc là hiệu ứng trang trí theo trạng thái phát/tạm dừng, không phải phân tích âm thanh. Hiệu ứng tuân theo nút Hiệu ứng và thiết lập giảm chuyển động; trang trí phần chỉ chuyển động khi gần vùng nhìn.
+
+Bó hoa chính có ly hồng–trắng, nụ ly, hoa phụ, bạch đàn, giấy gói nhiều lớp và nơ đỏ rượu. Đây là hình tạo bằng công cụ tạo ảnh, không phải ảnh chụp bó hoa đã đặt. Khung hoa được tăng kích thước trên desktop/mobile; có nút trở về ảnh sau khi xem mô hình 3D.
