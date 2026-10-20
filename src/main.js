@@ -1,3 +1,5 @@
+import { setupDetails } from './details.js';
+import './details.css';
 import { setupMusicPlayer } from './music-player.js';
 import { mountSavedPhotos } from './media.js';
 import { characterArt } from './character-art.js';
@@ -16,9 +18,7 @@ document.querySelector('#closeLetter').addEventListener('click',()=>dialog.close
 dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close();}});
 let toastTimer;
 function toast(text){const el=document.querySelector('#toast');el.textContent=text;el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show'),3500);}
-const input=document.querySelector('#photoInput');let photoTarget=null;const photoUrls=new Map();
-document.querySelectorAll('[data-photo]').forEach(button=>button.addEventListener('click',()=>{photoTarget=button;input.value='';input.click();}));
-input.addEventListener('change',async()=>{const file=input.files?.[0];if(!file||!photoTarget)return;if(!['image/jpeg','image/png','image/webp','image/gif'].includes(file.type)){toast('Em chọn ảnh JPG, PNG, WebP hoặc GIF nhé.');return;}if(file.size>15*1024*1024){toast('Em chọn ảnh nhỏ hơn 15 MB nhé.');return;}const target=photoTarget;const url=URL.createObjectURL(file);const img=new Image();img.alt='Ảnh kỷ niệm của chúng mình';try{img.src=url;await img.decode();const old=photoUrls.get(target);if(old)URL.revokeObjectURL(old);photoUrls.set(target,url);target.replaceChildren(img);target.setAttribute('aria-label','Thay ảnh kỷ niệm');toast('Đã thêm ảnh.');}catch{URL.revokeObjectURL(url);toast('Chưa đọc được ảnh này. Em thử ảnh khác nhé.');}});
+setupDetails();
 const musicPlayer = setupMusicPlayer();
 
 // A single heart click reveals the gift without an intermediate screen.

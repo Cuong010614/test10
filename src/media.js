@@ -24,9 +24,9 @@ export function mountSavedPhotos(){
   media.memories.slice(0,3).forEach((item,index)=>{
     const target=document.querySelector(`[data-photo="${index}"]`);
     const image=new Image();image.alt=item.alt||`Ảnh Mỹ Tú ${index+1}`;image.loading='eager';
-    image.addEventListener('load',()=>{target.replaceChildren(image);target.setAttribute('aria-label',`Thay ảnh Mỹ Tú ${index+1}`);},{once:true});
+    image.addEventListener('load',()=>{target.replaceChildren(image);target.setAttribute('aria-label',`Xem ảnh ${index+1} lớn hơn`);},{once:true});
     image.src=import.meta.env.BASE_URL+item.src;
     if(item.position)image.style.objectPosition=item.position;
   });
-  if(media.memories.length)document.querySelector('.photo-note').textContent='Ảnh của Mỹ Tú · Chạm vào khung để thử một ảnh khác trên thiết bị này.';
+  if(media.memories.length)document.querySelector('.photo-note').textContent='Chạm vào ảnh để xem lớn hơn.';
 }

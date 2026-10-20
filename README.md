@@ -40,11 +40,11 @@ Sau khi sửa nội dung, chạy `npm run build:pages` và commit cả mã ngu�
 
 Trình phát MP3 trong `src/music-player.js` dùng hai bản nhạc người gửi đã cung cấp: `public/Thích Em Hơi Nhiều.mp3` (Wren Evans) và `public/Tại Vì Sao.mp3` (MCK). Thả tim bắt đầu bài Wren Evans; chọn nghệ sĩ trong ô nhạc để đổi bài và phát ngay. Nút trên đầu trang đồng bộ với điều khiển phát/tạm dừng, tua và âm lượng của trình phát. Nếu trình duyệt chặn phát, người nhận có thể bấm Play. Nhạc phát trong trang, không dùng Spotify hay nhạc tổng hợp. Đường dẫn tôn trọng base `/test10/` của GitHub Pages.
 
-Ảnh được thêm trong giao diện chỉ tồn tại trong phiên mở trang, không tải lên máy chủ. Ảnh gốc đã được lưu trong `public/` và gắn trong `src/media.js`; khi đổi ảnh, cập nhật đường dẫn tại đây rồi chạy `npm run build:pages`. Font Playfair Display và Be Vietnam Pro được đóng gói cùng website, không cần kết nối Google Fonts.
+Ba ảnh gốc được lưu trong `public/` và khai báo trong `src/media.js`. Chạm ảnh để mở trình xem lớn, chuyển bằng nút mũi tên hoặc bàn phím, đóng bằng Escape hoặc nút ×; focus trở về khung ảnh đã chọn. Khi đổi ảnh, cập nhật đường dẫn rồi chạy `npm run build:pages`. Font Playfair Display và Be Vietnam Pro được đóng gói cùng website.
 
 ## Kiểm tra thủ công
 
-Kiểm tra màn hình 1440px, 390px và 320px: trang bìa che nội dung quà, chuyển thẳng sau một lần thả tim, mở/đóng thư bằng nút và Escape, trò lật thẻ (trúng/sai/chơi lại), chọn nhân vật, bật/tắt nhạc MP3, tua bài và đồng bộ điều khiển, thêm ảnh, hoa bung, mở hộp và sao chép chỉ dẫn. Thử lại với `prefers-reduced-motion: reduce`. Không có backend hoặc thông báo tự động gửi cho người nhận.
+Kiểm tra màn hình 1440px, 390px và 320px: trang bìa che nội dung quà, chuyển thẳng sau một lần thả tim, mở/đóng thư bằng nút và Escape, trò lật thẻ (trúng/sai/chơi lại), chọn nhân vật, bật/tắt nhạc MP3, tua bài và đồng bộ điều khiển, mở/chuyển/đóng ảnh lớn, hoa bung, mở hộp và sao chép chỉ dẫn. Thử lại với `prefers-reduced-motion: reduce`. Không có backend hoặc thông báo tự động gửi cho người nhận.
 
 ## Bản trải nghiệm 3D
 
@@ -61,3 +61,7 @@ Tham khảo kỹ thuật (không sao chép thiết kế): [Three.js Responsive D
 `src/media.js` khai báo ảnh Cô Hai, ba ảnh Mỹ Tú và năm ảnh nhân vật do người gửi chọn, theo đường dẫn tương đối trong `public/`. `src/character-art.js` dùng chung ảnh nhân vật cho trò ghép thẻ và phần hội bạn. Ảnh kỷ niệm hiển thị trọn khung bằng `object-fit: contain`; mỗi ảnh chỉ giữ nhãn OUR LITTLE MOMENT. Các ảnh nhân vật tách nền nằm trong `public/characters/`, bản gốc vẫn được giữ lại trong `public/`.
 
 `src/memory-game.js` quản lý xáo bài, lật thẻ, ghép cặp, lượt chơi và đặt lại ván. Trò chơi dùng số cặp từ danh sách nhân vật, hiện là 5 cặp; không chặn việc xem quà. `src/atmosphere.js` dùng một canvas cố định toàn màn hình cho cánh hoa, sao, vệt chuột và hiệu ứng khi chạm; các hạt có giới hạn số lượng và dừng khi tắt hiệu ứng hoặc ẩn tab.
+
+## Chi tiết trang trí
+
+`src/details.js` và `src/details.css` thêm họa tiết SVG, băng keo giấy, dấu 20/10, kẹp và sticker ảnh, họa tiết riêng cho từng nhân vật, hiệu ứng ghép đúng và ruy-băng quà. Họa tiết không nhận thao tác chuột/chạm và được ẩn khỏi cây trợ năng. Burst nhân vật giới hạn 7 hạt, tự dọn sau 950 ms. Thanh nhịp nhạc là hiệu ứng trang trí theo trạng thái phát/tạm dừng, không phải phân tích âm thanh. Hiệu ứng tuân theo nút Hiệu ứng và thiết lập giảm chuyển động; trang trí phần chỉ chuyển động khi gần vùng nhìn.
