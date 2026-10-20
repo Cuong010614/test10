@@ -39,7 +39,7 @@ document.querySelector('#secretEntry').addEventListener('click',()=>{
 });
 const friendMessages={
  miffy:'20/10 vui vẻ nha, Mỹ Tú!',
- bibble:'Nay ăn gì ngon nhớ rủ anh nha!',
+ bibble:'Ăn ngon nha, học hành tính sau xíu!',
  snoopy:'Học xong rồi nghỉ xíu nha.',
  bechichi:'Ngủ sớm nha, đừng thức khuya quá.',
  hirono:'Thi tốt, đạt điểm như ý nha!',
